@@ -63,7 +63,7 @@
 #include <linux/err.h>
 #include <linux/random.h>
 #if(LINUX_VERSION_CODE >= KERNEL_VERSION(4,8,0))
-#include <crypto/skcipher.h>
+#include <crypto/internal/cipher.h>
 #else
 #include <linux/crypto.h>
 #endif
@@ -106,6 +106,8 @@
 #ifndef CONFIG_CNSS
 #if defined(WLAN_FEATURE_11W) && (defined(HIF_USB) || defined(HIF_SDIO) || defined(CONFIG_NON_QC_PLATFORM_PCI))
 #define CMAC_TLEN 8 /* CMAC TLen = 64 bits (8 octets) */
+
+MODULE_IMPORT_NS(CRYPTO_INTERNAL);
 
 static inline void xor_128(const u8 *a, const u8 *b, u8 *out)
 {
