@@ -10,6 +10,8 @@ LICENSE_FILE ?= $(CURDIR)/$(WLAN_ROOT)/CORE/HDD/src/wlan_hdd_main.c
 WLAN_OPEN_SOURCE = $(shell if grep -q "MODULE_LICENSE(\"Dual BSD/GPL\")" \
 		$(LICENSE_FILE); then echo 1; else echo 0; fi)
 
+KBUILD_OPTIONS += CONFIG_ROME_IF=pci
+
 #By default build for CLD
 WLAN_SELECT := CONFIG_QCA_CLD_WLAN=m
 KBUILD_OPTIONS += CONFIG_QCA_WIFI_ISOC=0
