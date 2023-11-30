@@ -2088,6 +2088,8 @@ again:
     sc->cacheline_sz = dma_get_cache_alignment();
     pci_read_config_word(pdev, 0x08, &revision_id);
 
+    printk("Revision ID: %x\n",id->device);
+
     switch (id->device) {
     case AR9888_DEVICE_ID:
         hif_type = HIF_TYPE_AR9888;
