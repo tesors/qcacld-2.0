@@ -600,7 +600,7 @@ int get_fw_files_for_non_qc_pci_target(struct non_qc_platform_pci_fw_files *pfw_
 {
 	if (!pfw_files)
 		return -ENODEV;
-
+	printk("Version of a chipset is: %x",target_version);
 	switch (target_version) {
 		case AR6320_REV1_VERSION:
 		case AR6320_REV1_1_VERSION:
