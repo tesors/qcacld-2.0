@@ -131,7 +131,7 @@ static int ol_get_fw_files_for_target(struct ol_fw_files *pfw_files,
 {
     if (!pfw_files)
         return -ENODEV;
-
+	printk("Version of a chipset is: %x",target_version);
     switch (target_version) {
     case AR6320_REV1_VERSION:
     case AR6320_REV1_1_VERSION:
@@ -2732,6 +2732,7 @@ int ol_download_firmware(struct ol_softc *scn)
 #endif
 
 #if defined(CONFIG_NON_QC_PLATFORM_PCI)
+		printk("get_fw_files_for_non_qc_pci_target\n");
 		if (0 != get_fw_files_for_non_qc_pci_target(&scn->fw_files,
 						scn->target_type,
 						scn->target_version)) {
@@ -2739,6 +2740,7 @@ int ol_download_firmware(struct ol_softc *scn)
 			return -1;
 		}
 #elif defined(HIF_PCI)
+		printk("cnss_get_fw_files_for_target\n");
 		if (0 != cnss_get_fw_files_for_target(&scn->fw_files,
 						scn->target_type,
 						scn->target_version)) {
@@ -2746,6 +2748,7 @@ int ol_download_firmware(struct ol_softc *scn)
 			return -1;
 		}
 #elif defined(HIF_SDIO)
+		printk("ol_get_fw_files_for_target\n");
        if (0 != ol_get_fw_files_for_target(&scn->fw_files,
                                               scn->target_version)) {
                 printk("%s: No FW files from driver\n", __func__);
